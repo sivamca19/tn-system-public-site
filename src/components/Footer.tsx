@@ -1,0 +1,110 @@
+import { Code2, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <footer className="bg-slate-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="md:col-span-1">
+            <div className="flex items-center space-x-2 mb-4">
+              <Code2 className="h-8 w-8 text-blue-400" />
+              <span className="text-xl font-bold">TNSystems</span>
+            </div>
+            <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+              Transforming businesses through innovative technology solutions. Your trusted IT partner in Chennai.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <Facebook className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm text-slate-400">
+              <li>
+                <button onClick={() => scrollToSection('about')} className="hover:text-white transition-colors">
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button onClick={() => scrollToSection('services')} className="hover:text-white transition-colors">
+                  Services
+                </button>
+              </li>
+              <li>
+                <button onClick={() => scrollToSection('case-studies')} className="hover:text-white transition-colors">
+                  Case Studies
+                </button>
+              </li>
+              <li>
+                <button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors">
+                  Contact
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-4">Services</h4>
+            <ul className="space-y-2 text-sm text-slate-400">
+              <li>SAP Solutions</li>
+              <li>Full-Stack Development</li>
+              <li>IT Staffing</li>
+              <li>IT Consulting</li>
+              <li>Cloud Services</li>
+              <li>Security & Support</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-4">Contact Info</h4>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>123 IT Corridor, Anna Nagar, Chennai 600040</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Phone className="h-4 w-4 flex-shrink-0" />
+                <span>+91 44 1234 5678</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Mail className="h-4 w-4 flex-shrink-0" />
+                <span>info@tnsystems.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-800 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-sm text-slate-400">
+              &copy; {currentYear} TNSystems. All rights reserved.
+            </p>
+            <div className="flex space-x-6 text-sm text-slate-400">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
