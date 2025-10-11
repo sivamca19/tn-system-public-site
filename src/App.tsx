@@ -10,10 +10,15 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BlogPage from './components/BlogPage';
 import SinglePostPage from './components/SinglePostPage';
+import SEO from './components/SEO';
 
 // Layout for the main single-page experience
 const MainPage = () => (
   <main>
+    <SEO
+      title="Innovative IT Solutions & Staffing"
+      description="TNSystems delivers comprehensive IT consulting, SAP solutions, full-stack development, and strategic staffing services to drive your digital transformation forward."
+    />
     <Hero />
     <About />
     <Services />
@@ -25,8 +30,24 @@ const MainPage = () => (
 );
 
 function App() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TNSystems",
+    "url": "https://tnsystems.in/", // Replace with your actual domain
+    "logo": "https://tnsystems.in/logo.png", // Replace with your actual logo URL
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-XXX-XXX-XXXX", // Replace with your actual phone number
+      "contactType": "customer service"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <script type="application/ld+json">
+        {JSON.stringify(organizationSchema)}
+      </script>
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
