@@ -1,8 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HeartPulse, CheckCircle, Users, Clock, Shield, BarChart3, Calendar, FileText } from 'lucide-react';
 import SEO from './SEO';
 
 export default function HospifyPage() {
+  const navigate = useNavigate();
+
+  const scrollToContact = () => {
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById('contact');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <>
       <SEO
@@ -53,16 +65,12 @@ export default function HospifyPage() {
                   >
                     Visit Hospify Website
                   </a>
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = '/#contact';
-                    }}
+                  <button
+                    onClick={scrollToContact}
                     className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl hover:bg-blue-50 transition-all font-semibold text-center"
                   >
                     Request Demo
-                  </a>
+                  </button>
                 </div>
               </div>
 
@@ -260,16 +268,12 @@ export default function HospifyPage() {
               >
                 Start Free Trial
               </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = '/#contact';
-                }}
+              <button
+                onClick={scrollToContact}
                 className="border-2 border-white text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-all font-semibold"
               >
                 Schedule a Demo
-              </a>
+              </button>
             </div>
           </div>
         </section>

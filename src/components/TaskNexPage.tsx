@@ -1,8 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Calendar, CheckCircle, BarChart3, Users, Zap, Smartphone, Cloud, Mail, FolderTree, FileText, GitBranch, Clock, Shield, Search } from 'lucide-react';
 import SEO from './SEO';
 
 export default function TaskNexPage() {
+  const navigate = useNavigate();
+
+  const scrollToContact = () => {
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById('contact');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <>
       <SEO
@@ -45,26 +57,18 @@ export default function TaskNexPage() {
                   Comprehensive project management solution with issue tracking, sprint boards, time tracking, wiki, and cloud storage. Create issues from emails, manage multiple projects, and collaborate seamlessly with native mobile apps.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = '/#contact';
-                    }}
+                  <button
+                    onClick={scrollToContact}
                     className="bg-gradient-to-r from-violet-600 to-purple-600 text-white px-8 py-4 rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 font-semibold text-center"
                   >
                     Start Free Trial
-                  </a>
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = '/#contact';
-                    }}
+                  </button>
+                  <button
+                    onClick={scrollToContact}
                     className="border-2 border-violet-600 text-violet-600 px-8 py-4 rounded-xl hover:bg-violet-50 transition-all font-semibold text-center"
                   >
                     Request Demo
-                  </a>
+                  </button>
                 </div>
               </div>
 
@@ -250,26 +254,18 @@ export default function TaskNexPage() {
               Join thousands of teams already using TaskNex to deliver projects faster and more efficiently.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = '/#contact';
-                }}
+              <button
+                onClick={scrollToContact}
                 className="bg-white text-violet-600 px-8 py-4 rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 font-semibold"
               >
                 Start Free Trial
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = '/#contact';
-                }}
+              </button>
+              <button
+                onClick={scrollToContact}
                 className="border-2 border-white text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-all font-semibold"
               >
                 Schedule a Demo
-              </a>
+              </button>
             </div>
           </div>
         </section>

@@ -1,8 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Sparkles, CheckCircle, ChefHat, Home, Baby, Heart, Shield, Clock } from 'lucide-react';
 import SEO from './SEO';
 
 export default function MaidzyPage() {
+  const navigate = useNavigate();
+
+  const scrollToContact = () => {
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById('contact');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <>
       <SEO
@@ -45,26 +57,18 @@ export default function MaidzyPage() {
                   Connect with verified and reliable household helpers for all your daily needs. From cooking and cleaning to baby sitting and elder care, Maidzy makes it easy to find the perfect help for your home.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = '/#contact';
-                    }}
+                  <button
+                    onClick={scrollToContact}
                     className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-4 rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 font-semibold text-center"
                   >
                     Get Started Today
-                  </a>
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = '/#contact';
-                    }}
+                  </button>
+                  <button
+                    onClick={scrollToContact}
                     className="border-2 border-emerald-600 text-emerald-600 px-8 py-4 rounded-xl hover:bg-emerald-50 transition-all font-semibold text-center"
                   >
                     Learn More
-                  </a>
+                  </button>
                 </div>
               </div>
 
@@ -276,26 +280,18 @@ export default function MaidzyPage() {
               Join thousands of happy families who trust Maidzy for their household needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = '/#contact';
-                }}
+              <button
+                onClick={scrollToContact}
                 className="bg-white text-emerald-600 px-8 py-4 rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 font-semibold"
               >
                 Download App
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = '/#contact';
-                }}
+              </button>
+              <button
+                onClick={scrollToContact}
                 className="border-2 border-white text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-all font-semibold"
               >
                 Contact Us
-              </a>
+              </button>
             </div>
           </div>
         </section>

@@ -184,12 +184,19 @@ export default function Contact() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors"
                     >
                       <option value="">Select a service</option>
-                      <option value="sap">SAP Solutions</option>
-                      <option value="development">Full-Stack Development</option>
-                      <option value="staffing">IT Staffing</option>
-                      <option value="consulting">IT Consulting</option>
-                      <option value="cloud">Cloud Services</option>
-                      <option value="support">Security & Support</option>
+                      <optgroup label="Products">
+                        <option value="hospify">Hospify - Hospital Management System</option>
+                        <option value="maidzy">Maidzy - Home Services Platform</option>
+                        <option value="tasknex">TaskNex - Project Management Platform</option>
+                      </optgroup>
+                      <optgroup label="Services">
+                        <option value="sap">SAP Solutions</option>
+                        <option value="development">Full-Stack Development</option>
+                        <option value="staffing">IT Staffing</option>
+                        <option value="consulting">IT Consulting</option>
+                        <option value="cloud">Cloud Services</option>
+                        <option value="support">Security & Support</option>
+                      </optgroup>
                       <option value="other">Other</option>
                     </select>
                   </div>
