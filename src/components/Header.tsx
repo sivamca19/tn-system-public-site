@@ -1,6 +1,7 @@
-import { Menu, X, Code2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,9 +61,12 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => scrollToSection('hero')}>
-            <Code2 className="h-8 w-8 text-cyan-600" />
-            <span className="text-xl font-bold text-gray-900">TNSystems</span>
+          <div className="flex items-center cursor-pointer" onClick={() => scrollToSection('hero')}>
+            <img
+              src={logo}
+              alt="TNSystems Logo"
+              className="h-10 w-auto"
+            />
           </div>
 
           <div className="hidden md:flex items-center space-x-8">

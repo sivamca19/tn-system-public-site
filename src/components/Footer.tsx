@@ -1,12 +1,26 @@
-import { Code2, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import logoDark from '../assets/logo-dark.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -15,9 +29,12 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <Code2 className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-bold">TNSystems</span>
+            <div className="mb-4">
+              <img
+                src={logoDark}
+                alt="TNSystems Logo"
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-slate-400 text-sm mb-4 leading-relaxed">
               Transforming businesses through innovative technology solutions. Your trusted IT partner in Chennai.
@@ -98,9 +115,15 @@ export default function Footer() {
               &copy; {currentYear} TNSystems. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-slate-400">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+              <Link to="/privacy-policy" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-of-service" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+                Terms of Service
+              </Link>
+              <Link to="/cookie-policy" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

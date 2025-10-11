@@ -10,6 +10,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BlogPage from './components/BlogPage';
 import SinglePostPage from './components/SinglePostPage';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
+import CookiePolicy from './components/CookiePolicy';
 import SEO from './components/SEO';
 
 // Layout for the main single-page experience
@@ -53,6 +56,9 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<SinglePostPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
       </Routes>
       <Footer />
     </div>
