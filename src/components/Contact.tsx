@@ -51,9 +51,9 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Visit Us</h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      TNSystems Pvt Ltd<br />
-                      123 IT Corridor, Anna Nagar<br />
-                      Chennai, Tamil Nadu 600040<br />
+                      TopNotch Systems<br />
+                      2A Kalaimagal nagar, 3nd cross street,<br />
+                      Ekkaduthangal, Chennai, Tamil Nadu 600032<br />
                       India
                     </p>
                   </div>
@@ -65,8 +65,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Call Us</h4>
-                    <p className="text-gray-600 text-sm">+91 44 1234 5678</p>
-                    <p className="text-gray-600 text-sm">+91 98765 43210</p>
+                    <p className="text-gray-600 text-sm">+91 44 4586 2134</p>
+                    <p className="text-gray-600 text-sm">+91 63806 11236</p>
                   </div>
                 </div>
 
@@ -76,8 +76,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Email Us</h4>
-                    <p className="text-gray-600 text-sm">info@tnsystems.com</p>
-                    <p className="text-gray-600 text-sm">sales@tnsystems.com</p>
+                    <p className="text-gray-600 text-sm">hr@tnsystems.in</p>
+                    <p className="text-gray-600 text-sm">operations@tnsystems.in</p>
                   </div>
                 </div>
               </div>

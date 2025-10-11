@@ -40,7 +40,7 @@ export default function Footer() {
               Transforming businesses through innovative technology solutions. Your trusted IT partner in Chennai.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
+              <a href="https://www.linkedin.com/in/topnotch-systems-chennai/" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
               <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
@@ -95,15 +95,15 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>123 IT Corridor, Anna Nagar, Chennai 600040</span>
+                <span>2A Kalaimagal nagar, 3nd cross street, Ekkaduthangal, Chennai, Tamil Nadu 600032, India</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <span>+91 44 1234 5678</span>
+                <span>+91 63806 11236</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <span>info@tnsystems.com</span>
+                <span>hr@tnsystems.in</span>
               </li>
             </ul>
           </div>
