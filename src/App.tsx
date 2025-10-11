@@ -4,7 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import Products from './components/Products';
-import CaseStudies from './components/CaseStudies';
+// import CaseStudies from './components/CaseStudies';
 import Blogs from './components/Blogs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -13,6 +13,9 @@ import SinglePostPage from './components/SinglePostPage';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import CookiePolicy from './components/CookiePolicy';
+import HospifyPage from './components/HospifyPage';
+import MaidzyPage from './components/MaidzyPage';
+import TaskNexPage from './components/TaskNexPage';
 import SEO from './components/SEO';
 
 // Layout for the main single-page experience
@@ -26,7 +29,7 @@ const MainPage = () => (
     <About />
     <Services />
     <Products />
-    <CaseStudies />
+    {/* <CaseStudies /> */}
     <Blogs />
     <Contact />
   </main>
@@ -56,6 +59,9 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<SinglePostPage />} />
+        <Route path="/products/hospify" element={<HospifyPage />} />
+        <Route path="/products/maidzy" element={<MaidzyPage />} />
+        <Route path="/products/tasknex" element={<TaskNexPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
