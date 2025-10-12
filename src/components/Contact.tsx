@@ -1,5 +1,7 @@
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { trackFormSubmit, trackContact } from '../utils/analytics';
+import { CONTACT_FORM_API_URL } from '../config/env';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,15 +13,61 @@ export default function Contact() {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
-    }, 3000);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Map form fields to CF7 field names
+      const cf7Data = {
+        'your-name': formData.name,
+        'your-email': formData.email,
+        'your-phone-number': formData.phone,
+        'your-company-name': formData.company,
+        'your-service-interest': formData.service,
+        'your-message': formData.message
+      };
+
+      const response = await fetch(CONTACT_FORM_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cf7Data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.status === 'mail_sent') {
+        // Success
+        trackFormSubmit('Contact Form', true);
+        trackContact('Contact Form');
+
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        // CF7 validation error or other error
+        const errorMessage = result.message || result.invalid_fields?.[0]?.message || 'Failed to send message. Please try again.';
+        setSubmitError(errorMessage);
+        trackFormSubmit('Contact Form', false);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('Network error. Please check your connection and try again.');
+      trackFormSubmit('Contact Form', false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -109,7 +157,17 @@ export default function Contact() {
                   <p className="text-gray-600">We'll get back to you within 24 hours.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <>
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-start gap-3">
+                      <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-sm font-semibold text-red-900 mb-1">Error</h4>
+                        <p className="text-sm text-red-700">{submitError}</p>
+                      </div>
+                    </div>
+                  )}
+                  <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -218,12 +276,26 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center space-x-2 group"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center space-x-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <span>Send Message</span>
-                    <Send className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </button>
                 </form>
+                </>
               )}
             </div>
           </div>

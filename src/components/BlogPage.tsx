@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from './SEO';
+import { WORDPRESS_API_URL } from '../config/env';
 
 interface Post {
   id: number;
@@ -78,7 +79,7 @@ export default function BlogPage() {
     setLoading(true);
     setError(false);
     try {
-      const response = await fetch('https://tnsystems.in/wp-json/wp/v2/posts?per_page=100&_embed');
+      const response = await fetch(`${WORDPRESS_API_URL}/posts?per_page=100&_embed`);
       if (!response.ok) {
         throw new Error('Failed to fetch posts');
       }

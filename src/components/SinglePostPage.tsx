@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEO from './SEO';
+import { WORDPRESS_API_URL } from '../config/env';
 
 interface SinglePost {
   id: number;
@@ -119,7 +120,7 @@ export default function SinglePostPage() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const response = await fetch(`https://tnsystems.in/wp-json/wp/v2/posts?slug=${slug}&_embed`);
+        const response = await fetch(`${WORDPRESS_API_URL}/posts?slug=${slug}&_embed`);
         const data: SinglePost[] = await response.json();
         if (data.length > 0) {
           setPost(data[0]);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { WORDPRESS_API_URL } from '../config/env';
 
 interface Post {
   id: number;
@@ -23,7 +24,7 @@ export default function Blogs() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await fetch('https://tnsystems.in/wp-json/wp/v2/posts?per_page=8&_embed');
+        const response = await fetch(`${WORDPRESS_API_URL}/posts?per_page=8&_embed`);
         const data: Post[] = await response.json();
         setPosts(data);
         setFilteredPosts(data);

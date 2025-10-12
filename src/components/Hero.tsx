@@ -1,8 +1,18 @@
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import { trackCTAClick } from '../utils/analytics';
 
 export default function Hero() {
   const scrollToContact = () => {
+    trackCTAClick('Get Started', 'Hero Section');
     const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToServices = () => {
+    trackCTAClick('Explore Services', 'Hero Section');
+    const element = document.getElementById('services');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -59,7 +69,7 @@ export default function Hero() {
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={scrollToServices}
                 className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-xl hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 transition-all font-semibold"
               >
                 Explore Services
