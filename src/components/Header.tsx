@@ -91,8 +91,9 @@ export default function Header() {
           </div>
 
           <button
-            className="md:hidden"
+            className="md:hidden text-gray-900 hover:text-blue-600 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -115,7 +116,7 @@ export default function Header() {
             <button onClick={() => scrollToSection('blogs')} className={mobileNavLinkClasses('blogs')}>
               Blogs
             </button>
-            <button onClick={() => scrollToSection('contact')} className="block w-full text-left bg-cyan-600 text-white px-6 py-2 rounded-lg hover:bg-cyan-700 transition-colors mt-2">
+            <button onClick={() => scrollToSection('contact')} className={mobileNavLinkClasses('contact')}>
               Contact Us
             </button>
           </div>

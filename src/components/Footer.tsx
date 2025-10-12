@@ -65,11 +65,11 @@ export default function Footer() {
                   Services
                 </button>
               </li>
-              <li>
+              {/* <li>
                 <button onClick={() => scrollToSection('case-studies')} className="hover:text-white transition-colors">
                   Case Studies
                 </button>
-              </li>
+              </li> */}
               <li>
                 <button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors">
                   Contact
