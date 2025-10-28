@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
   Briefcase,
@@ -12,7 +12,6 @@ import {
   Send,
   CheckCircle2,
   AlertCircle,
-  Upload,
   FileText
 } from 'lucide-react';
 import SEO from './SEO';
@@ -38,7 +37,6 @@ interface Job {
 
 export default function CareerDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const [job, setJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
