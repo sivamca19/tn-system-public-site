@@ -13,6 +13,9 @@ export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XX
 // WordPress API
 export const WORDPRESS_API_URL = import.meta.env.VITE_WORDPRESS_API_URL || 'https://tnsystems.in/wp-json/wp/v2';
 
+// Jobs/Careers API
+export const JOBS_API_URL = import.meta.env.VITE_JOBS_API_URL || 'https://tnsystems.in/wp-json/jobs/v1/listings';
+
 // Contact Form 7 API
 export const CONTACT_FORM_API_URL = import.meta.env.VITE_CONTACT_FORM_API_URL || 'https://tnsystems.in/wp-json/contact-form-7/v1/contact-forms/535/feedback';
 

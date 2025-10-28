@@ -6,11 +6,14 @@ import About from './components/About';
 import Services from './components/Services';
 import Products from './components/Products';
 // import CaseStudies from './components/CaseStudies';
+import Careers from './components/Careers';
 import Blogs from './components/Blogs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BlogPage from './components/BlogPage';
 import SinglePostPage from './components/SinglePostPage';
+import CareersPage from './components/CareersPage';
+import CareerDetailPage from './components/CareerDetailPage';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import CookiePolicy from './components/CookiePolicy';
@@ -34,6 +37,7 @@ const MainPage = () => (
     <Services />
     <Products />
     {/* <CaseStudies /> */}
+    <Careers />
     <Blogs />
     <Contact />
   </main>
@@ -74,6 +78,8 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<SinglePostPage />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/careers/:id" element={<CareerDetailPage />} />
         <Route path="/products/hospify" element={<HospifyPage />} />
         <Route path="/products/maidzy" element={<MaidzyPage />} />
         <Route path="/products/tasknex" element={<TaskNexPage />} />

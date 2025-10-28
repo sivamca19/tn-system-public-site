@@ -82,6 +82,9 @@ export default function Header() {
             {/* <button onClick={() => scrollToSection('case-studies')} className={navLinkClasses('case-studies')}>
               Case Studies
             </button> */}
+            <button onClick={() => scrollToSection('careers')} className={navLinkClasses('careers')}>
+              Careers
+            </button>
             <button onClick={() => scrollToSection('blogs')} className={navLinkClasses('blogs')}>
               Blogs
             </button>
@@ -113,6 +116,9 @@ export default function Header() {
             {/* <button onClick={() => scrollToSection('case-studies')} className={mobileNavLinkClasses('case-studies')}>
               Case Studies
             </button> */}
+            <button onClick={() => scrollToSection('careers')} className={mobileNavLinkClasses('careers')}>
+              Careers
+            </button>
             <button onClick={() => scrollToSection('blogs')} className={mobileNavLinkClasses('blogs')}>
               Blogs
             </button>
