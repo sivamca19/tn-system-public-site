@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logoDark from '../assets/logo-dark.png';
+import { trackButtonClick, trackOutboundLink } from '../utils/analytics';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,6 +9,7 @@ export default function Footer() {
   const location = useLocation();
 
   const scrollToSection = (id: string) => {
+    trackButtonClick(`Footer Nav ${id}`, 'Footer');
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -40,13 +42,17 @@ export default function Footer() {
               Transforming businesses through innovative technology solutions. Your trusted IT partner in Chennai.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/in/topnotch-systems-chennai/" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
+              <a 
+                href="https://www.linkedin.com/in/topnotch-systems-chennai/" 
+                onClick={() => trackOutboundLink('https://www.linkedin.com/in/topnotch-systems-chennai/')}
+                className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
+              <a href="#" onClick={() => trackOutboundLink('#')} className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
+              <a href="#" onClick={() => trackOutboundLink('#')} className="bg-slate-800 p-2 rounded-lg hover:bg-blue-600 transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
             </div>
@@ -115,13 +121,13 @@ export default function Footer() {
               &copy; {currentYear} TNSystems. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-slate-400">
-              <Link to="/privacy-policy" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+              <Link to="/privacy-policy" onClick={() => trackButtonClick('Privacy Policy', 'Footer')} className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
                 Privacy Policy
               </Link>
-              <Link to="/terms-of-service" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+              <Link to="/terms-of-service" onClick={() => trackButtonClick('Terms of Service', 'Footer')} className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
                 Terms of Service
               </Link>
-              <Link to="/cookie-policy" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+              <Link to="/cookie-policy" onClick={() => trackButtonClick('Cookie Policy', 'Footer')} className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
                 Cookie Policy
               </Link>
             </div>

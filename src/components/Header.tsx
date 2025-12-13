@@ -2,6 +2,7 @@ import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import { trackButtonClick } from '../utils/analytics';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function Header() {
   }, [location.pathname]); // Rerun when path changes
 
   const scrollToSection = (id: string) => {
+    trackButtonClick(`Nav ${id}`, 'Header');
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {

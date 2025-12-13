@@ -1,6 +1,7 @@
 import { ExternalLink, HeartPulse, Sparkles, Calendar, ShieldCheck, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackButtonClick } from '../utils/analytics';
+import SEO from './SEO';
 
 const products = [
   {
@@ -90,8 +91,14 @@ const products = [
   }
 ];
 
-export default function Products() {
+export default function AllProductsPage() {
   return (
+    <>
+    <SEO
+        title="Our Products - TN Systems"
+        description="Discover our suite of cutting-edge products designed to transform your business operations and drive growth."
+        keywords={['products', 'tnsystems', 'hospify', 'maidzy', 'tasknex', 'finshields']}
+      />
     <section id="products" className="py-16 md:py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -100,7 +107,7 @@ export default function Products() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-10">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-full mb-4 shadow-lg animate-fade-in">
             Our Products
@@ -114,7 +121,7 @@ export default function Products() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.slice(0, 3).map((product, index) => {
+          {products.map((product, index) => {
             const Icon = product.icon;
             return (
               <div
@@ -164,14 +171,27 @@ export default function Products() {
                   </div>
 
                   {/* CTA button */}
-                  <Link
-                    to={product.link}
-                    onClick={() => trackButtonClick(`Learn More - ${product.name}`, 'Products Section')}
-                    className={`inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r ${product.gradient} text-white font-semibold rounded-xl hover:shadow-xl transform hover:scale-105 transition-all duration-300 group-hover:animate-pulse`}
-                  >
-                    Learn More
-                    <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  {product.link.startsWith('http') ?
+                    <a
+                      href={product.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackButtonClick(`Learn More - ${product.name}`, 'Products Section')}
+                      className={`inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r ${product.gradient} text-white font-semibold rounded-xl hover:shadow-xl transform hover:scale-105 transition-all duration-300 group-hover:animate-pulse`}
+                    >
+                      Learn More
+                      <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                    :
+                    <Link
+                      to={product.link}
+                      onClick={() => trackButtonClick(`Learn More - ${product.name}`, 'Products Section')}
+                      className={`inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r ${product.gradient} text-white font-semibold rounded-xl hover:shadow-xl transform hover:scale-105 transition-all duration-300 group-hover:animate-pulse`}
+                    >
+                      Learn More
+                      <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  }
                 </div>
 
                 {/* Shine effect */}
@@ -180,16 +200,8 @@ export default function Products() {
             );
           })}
         </div>
-        <div className="text-center mt-16">
-          <Link
-            to="/products"
-            className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-            onClick={() => trackButtonClick('View All Products', 'Products Section')}
-          >
-            View All Products
-          </Link>
-        </div>
       </div>
     </section>
+    </>
   );
 }

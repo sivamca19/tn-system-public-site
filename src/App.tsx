@@ -20,10 +20,14 @@ import CookiePolicy from './components/CookiePolicy';
 import HospifyPage from './components/HospifyPage';
 import MaidzyPage from './components/MaidzyPage';
 import TaskNexPage from './components/TaskNexPage';
+import AllProductsPage from './components/AllProductsPage';
+import FinshieldsPage from './components/FinshieldsPage';
+import WaitifyPage from './components/WaitifyPage';
 import SEO from './components/SEO';
 import usePageTracking from './hooks/usePageTracking';
 import { initGA } from './utils/analytics';
 import { GA_MEASUREMENT_ID, FEATURES } from './config/env';
+import ScrollToTop from './components/ScrollToTop';
 
 // Layout for the main single-page experience
 const MainPage = () => (
@@ -73,6 +77,7 @@ function App() {
       <script type="application/ld+json">
         {JSON.stringify(organizationSchema)}
       </script>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
@@ -83,6 +88,9 @@ function App() {
         <Route path="/products/hospify" element={<HospifyPage />} />
         <Route path="/products/maidzy" element={<MaidzyPage />} />
         <Route path="/products/tasknex" element={<TaskNexPage />} />
+        <Route path="/products/finshields" element={<FinshieldsPage />} />
+        <Route path="/products/waitify" element={<WaitifyPage />} />
+        <Route path="/products" element={<AllProductsPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />

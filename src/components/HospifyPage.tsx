@@ -1,11 +1,18 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { HeartPulse, CheckCircle, Users, Clock, Shield, BarChart3, Calendar, FileText } from 'lucide-react';
 import SEO from './SEO';
+import { useEffect } from 'react';
+import { trackProductView, trackButtonClick, trackOutboundLink } from '../utils/analytics';
 
 export default function HospifyPage() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    trackProductView('Hospify');
+  }, []);
+
   const scrollToContact = () => {
+    trackButtonClick('Request Demo', 'Hospify Page');
     navigate('/');
     setTimeout(() => {
       const element = document.getElementById('contact');
@@ -32,13 +39,13 @@ export default function HospifyPage() {
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <Link
-              to="/"
+              to="/products"
               className="text-blue-600 hover:text-blue-700 mb-8 inline-flex items-center group focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
             >
               <svg className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              Back to Home
+              Back to Products
             </Link>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -61,6 +68,7 @@ export default function HospifyPage() {
                     href="https://www.hospify.online/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackOutboundLink('https://www.hospify.online/')}
                     className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 font-semibold text-center"
                   >
                     Visit Hospify Website
@@ -236,6 +244,7 @@ export default function HospifyPage() {
                     href="https://www.hospify.online/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackButtonClick(`Get Started - ${plan.name}`, 'Hospify Pricing')}
                     className={`block w-full py-3 px-6 rounded-xl font-semibold text-center transition-all ${
                       plan.popular
                         ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-xl transform hover:scale-105'
@@ -264,12 +273,16 @@ export default function HospifyPage() {
                 href="https://www.hospify.online/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackButtonClick('Start Free Trial', 'Hospify CTA')}
                 className="bg-white text-blue-600 px-8 py-4 rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 font-semibold"
               >
                 Start Free Trial
               </a>
               <button
-                onClick={scrollToContact}
+                onClick={() => {
+                  trackButtonClick('Schedule a Demo', 'Hospify CTA');
+                  scrollToContact();
+                }}
                 className="border-2 border-white text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-all font-semibold"
               >
                 Schedule a Demo

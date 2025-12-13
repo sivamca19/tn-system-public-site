@@ -1,4 +1,5 @@
 import { Database, Code, Users, Lightbulb, Cloud, Shield } from 'lucide-react';
+import { trackButtonClick } from '../utils/analytics';
 
 export default function Services() {
   const services = [
@@ -40,6 +41,11 @@ export default function Services() {
     }
   ];
 
+  const handleServiceClick = (serviceTitle: string) => {
+    trackButtonClick(`Service: ${serviceTitle}`, 'Services Section');
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   return (
     <section id="services" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +64,8 @@ export default function Services() {
             return (
               <div
                 key={index}
-                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group"
+                onClick={() => handleServiceClick(service.title)}
+                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group cursor-pointer"
               >
                 <div className="bg-blue-50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
                   <Icon className="h-8 w-8 text-blue-600 group-hover:text-white transition-colors" />
@@ -90,7 +97,10 @@ export default function Services() {
             Don't see what you're looking for? We offer custom solutions for unique business challenges.
           </p>
           <button
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              trackButtonClick('Discuss Your Project', 'Services Section');
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
             Discuss Your Project

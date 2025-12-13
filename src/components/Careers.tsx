@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Briefcase, MapPin, Clock, Calendar, ArrowRight } from 'lucide-react';
 import { JOBS_API_URL } from '../config/env';
+import { trackButtonClick } from '../utils/analytics';
 
 interface Job {
   id: number;
@@ -98,6 +99,7 @@ export default function Careers() {
                 <Link
                   key={job.id}
                   to={`/careers/${job.id}`}
+                  onClick={() => trackButtonClick(`View Job: ${job.title}`, 'Careers Section')}
                   className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-blue-200"
                 >
                   <div className="flex justify-between items-start mb-4">
@@ -145,6 +147,7 @@ export default function Careers() {
             <div className="text-center">
               <Link
                 to="/careers"
+                onClick={() => trackButtonClick('View All Openings', 'Careers Section')}
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 font-semibold group"
               >
                 <span>View All Openings</span>

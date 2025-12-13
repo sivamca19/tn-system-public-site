@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { WORDPRESS_API_URL } from '../config/env';
+import { trackButtonClick } from '../utils/analytics';
 
 interface Post {
   id: number;
@@ -55,6 +56,11 @@ export default function Blogs() {
     }
   }, [selectedCategory, posts]);
 
+  const handleCategoryClick = (category: string) => {
+    trackButtonClick(`Blog Category: ${category}`, 'Blogs Section');
+    setSelectedCategory(category);
+  }
+
   return (
     <section id="blogs" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +73,7 @@ export default function Blogs() {
           {categories.map(category => (
             <button 
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategoryClick(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedCategory === category 
                 ? 'bg-cyan-600 text-white' 
@@ -90,7 +96,13 @@ export default function Blogs() {
                 <div className="p-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-2" dangerouslySetInnerHTML={{ __html: post.title.rendered }}></h3>
                   <div className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.substring(0, 100) + '...' }}></div>
-                  <Link to={`/blog/${post.slug}`} className="text-cyan-600 hover:text-cyan-700 font-medium mt-4 inline-block">Read More</Link>
+                  <Link 
+                    to={`/blog/${post.slug}`} 
+                    onClick={() => trackButtonClick(`Read More: ${post.title.rendered}`, 'Blogs Section')}
+                    className="text-cyan-600 hover:text-cyan-700 font-medium mt-4 inline-block"
+                  >
+                    Read More
+                  </Link>
                 </div>
               </div>
             ))}
@@ -98,7 +110,11 @@ export default function Blogs() {
         )}
 
         <div className="text-center mt-12">
-          <Link to="/blog" className="bg-cyan-600 text-white px-8 py-3 rounded-lg hover:bg-cyan-700 transition-all hover:shadow-lg">
+          <Link 
+            to="/blog" 
+            onClick={() => trackButtonClick('View More Blogs', 'Blogs Section')}
+            className="bg-cyan-600 text-white px-8 py-3 rounded-lg hover:bg-cyan-700 transition-all hover:shadow-lg"
+          >
             View More Blogs
           </Link>
         </div>

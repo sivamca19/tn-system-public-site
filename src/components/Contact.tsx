@@ -1,6 +1,6 @@
 import { Mail, Phone, MapPin, Send, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
-import { trackFormSubmit, trackContact } from '../utils/analytics';
+import { trackFormSubmit, trackContact, trackButtonClick } from '../utils/analytics';
 import { CONTACT_FORM_API_URL } from '../config/env';
 
 export default function Contact() {
@@ -19,6 +19,7 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    trackButtonClick('Send Message', 'Contact Form');
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -113,7 +114,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Call Us</h4>
-                    <p className="text-gray-600 text-sm">+91 44 4586 2134</p>
+                    {/* <p className="text-gray-600 text-sm">+91 44 4586 2134</p> */}
                     <p className="text-gray-600 text-sm">+91 63806 11236</p>
                   </div>
                 </div>
@@ -203,7 +204,7 @@ export default function Contact() {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number
+                        Phone Number *
                       </label>
                       <input
                         type="tel"
@@ -212,6 +213,7 @@ export default function Contact() {
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors"
                         placeholder="+91 98765 43210"
+                        required
                       />
                     </div>
 
@@ -246,6 +248,8 @@ export default function Contact() {
                         <option value="hospify">Hospify - Hospital Management System</option>
                         <option value="maidzy">Maidzy - Home Services Platform</option>
                         <option value="tasknex">TaskNex - Project Management Platform</option>
+                        <option value="finshields">Finshields - Your Financial Guardian</option>
+                        <option value="waitify">Waitify - Know Before You Go</option>
                       </optgroup>
                       <optgroup label="Services">
                         <option value="sap">SAP Solutions</option>
